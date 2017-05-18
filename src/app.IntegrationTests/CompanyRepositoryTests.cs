@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using app.domain;
+using app.domain.company;
 using app.persistence;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;

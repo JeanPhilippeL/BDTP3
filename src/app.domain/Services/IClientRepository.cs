@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace app.domain
+namespace app.domain.Services
 {
-    public interface IRepository<T> where T : Entity
+    public interface IClientRepository<T> where T : Client
     {
         IEnumerable<T> GetAll();
         T GetById(int id);
@@ -15,6 +15,4 @@ namespace app.domain
         void Add(T entity);
         void Update(T entity);
     }
-
-
 }

@@ -21,7 +21,7 @@ namespace app.persistence
 
             //Aussi, base de données hardcoded
             //optionsBuilder.UseSqlite("Filename='C:/tempo/bd.sqlite'");
-            optionsBuilder.UseSqlite(configuration["DATABASE_CONNECTIONSTRING"]);      // Variable d'environnement
+            optionsBuilder.UseSqlite("Filename='C:/Users/Jean-Philippe/Desktop/bdGit/BDTP3/bd.sqlite'");      // Variable d'environnement
 
             return new ApplicationDbContext(optionsBuilder.Options);
         }
