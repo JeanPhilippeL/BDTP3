@@ -2,10 +2,11 @@
 using System.Linq;
 using app.domain;
 using Microsoft.EntityFrameworkCore;
+using app.domain.Services;
 
 namespace app.persistence
 {
-    public class ArtistFrameworkRepository<T> : IRepository<T> where T : Entity
+    public class ArtistFrameworkRepository<T> : IArtistRepository<T> where T : Entity
     {
             private readonly DbContext _context;
 

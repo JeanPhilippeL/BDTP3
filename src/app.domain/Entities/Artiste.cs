@@ -7,6 +7,10 @@ namespace app.domain.artiste
 {
     public class Artiste : Entity
     {
-        public string Name { get; set; }
+        public string NOM_ARTISTE { get; set; }
+        public string PRENOM_ARTISTE { get; set; }
+        public string TELEPHONE { get; set; }
+        public string NOM_DE_SCENE { get; set; }
+        public long NAS { get; set; }
     }
 }

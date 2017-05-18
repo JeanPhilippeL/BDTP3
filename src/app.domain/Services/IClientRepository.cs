@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace app.domain.Services
 {
-    public interface IClientRepository<T> where T : Client
+    public interface IClientRepository<T> where T : Entity
     {
         IEnumerable<T> GetAll();
         T GetById(int id);

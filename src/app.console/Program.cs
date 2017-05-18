@@ -1,4 +1,4 @@
-﻿using app.domain.company;
+﻿using app.domain.artiste;
 using app.domain.client;
 using app.persistence;
 using Microsoft.EntityFrameworkCore.Infrastructure;
@@ -13,12 +13,18 @@ namespace app.console
 
             var dbContext = dbContextFactory.Create(new DbContextFactoryOptions());
 
-            var companiesRepositories = new EntityFrameworkRepository<Company>(dbContext);
-            var clientRepositories = new EntityFrameworkRepository<Client>(dbContext);
-            companiesRepositories.Add(
-                new Company()
+            var ArtistRepositories = new ArtistFrameworkRepository<Artiste>(dbContext);
+            var clientRepositories = new ClientFrameworkRepository<Client>(dbContext);
+            ArtistRepositories.Add(
+                new Artiste()
                 {
-                    Name = "GitLab"
+                    NOM_ARTISTE = "IciNomArtist",
+                    PRENOM_ARTISTE = "IciPrenomArtist"
+                });
+            clientRepositories.Add(
+                new Client()
+                {
+                    Name = "IciNomCLient"
                 });
         }
     }

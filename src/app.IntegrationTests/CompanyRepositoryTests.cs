@@ -7,6 +7,7 @@ using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Xunit;
+using app.domain.client;
 
 namespace app.IntegrationTests
 {
@@ -14,7 +15,7 @@ namespace app.IntegrationTests
     {
         private ApplicationDbContextFactory _dbContextFactory;
         private readonly DbContextOptionsBuilder<ApplicationDbContext> _dbContextOptionsBuilder;
-        private readonly EntityFrameworkRepository<Company> _companyRepository;
+        private readonly ClientFrameworkRepository<Company> _companyRepository;
 
         public CompanyRepositoryTests()
         {
@@ -22,7 +23,7 @@ namespace app.IntegrationTests
 
             var dbContext = _dbContextFactory.Create();
             ClearAllTables(dbContext);
-            _companyRepository = new EntityFrameworkRepository<Company>(dbContext);
+            _companyRepository = new ClientFrameworkRepository<Client>(dbContext);
         }
 
         [Fact]

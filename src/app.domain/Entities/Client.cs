@@ -2,6 +2,8 @@
 {
     public class Client : Entity
     {
-        public string Name { get; set; }
+        public string NOM_CLIENT { get; set; }
+        public string TELEPHONE_CLIENT { get; set; }
+        public string REFERENCE { get; set; }
     }
 }
