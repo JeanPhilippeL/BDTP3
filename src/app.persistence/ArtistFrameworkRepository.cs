@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace app.persistence
 {
-    public class ClientFrameworkRepository<T> : IRepository<T> where T : Entity
+    public class ArtistFrameworkRepository<T> : IRepository<T> where T : Entity
     {
             private readonly DbContext _context;
 
-            public ClientFrameworkRepository(ApplicationDbContext dbContext)
+            public ArtistFrameworkRepository(ApplicationDbContext dbContext)
             {
                 _context = dbContext;
             }
