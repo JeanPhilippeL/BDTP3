@@ -10,9 +10,8 @@ namespace app.domain.membre
 {
     public class Membre
     {
-        [Key][ForeignKey("NOM_DU_GROUPE")]
-        public Groupe NOM_DU_GROUPE { get; set; }
-
+        [Key]
+        [Required]
         public string ROLE { get; set; }
     }
 }

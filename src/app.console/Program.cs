@@ -24,7 +24,7 @@ namespace app.console
             clientRepositories.Add(
                 new Client()
                 {
-                    Name = "IciNomCLient"
+                    NOM_CLIENT = "IciNomCLient"
                 });
         }
     }

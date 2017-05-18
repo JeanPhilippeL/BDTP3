@@ -3,10 +3,11 @@ using System.Linq;
 using app.domain;
 using Microsoft.EntityFrameworkCore;
 using app.domain.Services;
+using app.domain.client;
 
 namespace app.persistence
 {
-    public class ClientFrameworkRepository<T> : IClientRepository<T> where T : Entity
+    public class ClientFrameworkRepository<T> : IClientRepository<T> where T : Client
     {
             private readonly DbContext _context;
 
@@ -22,7 +23,7 @@ namespace app.persistence
 
             public T GetById(int id)
             {
-                return _context.Set<T>().FirstOrDefault(x => x.Id == id);
+                return _context.Set<T>().FirstOrDefault(x => x.ID_CLEINT == id);
             }
 
             public void Delete(T entity)
@@ -41,6 +42,10 @@ namespace app.persistence
             {
                 _context.Set<T>().Update(entity);
                 _context.SaveChanges();
+            }
+            public void Cascade(T entity) // mise-à-jour
+            {
+                //
             }
     }
 }
