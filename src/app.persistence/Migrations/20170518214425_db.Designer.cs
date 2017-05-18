@@ -8,7 +8,7 @@ using app.persistence;
 namespace app.persistence.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170518210729_db")]
+    [Migration("20170518214425_db")]
     partial class db
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -74,9 +74,14 @@ namespace app.persistence.Migrations
 
                     b.Property<int>("ID_CLEINT");
 
+                    b.Property<string>("NOM_DU_GROUPE")
+                        .IsRequired();
+
                     b.HasKey("ID_CONTRAT");
 
                     b.HasIndex("ID_CLEINT");
+
+                    b.HasIndex("NOM_DU_GROUPE");
 
                     b.ToTable("Contrat");
                 });
@@ -88,16 +93,22 @@ namespace app.persistence.Migrations
 
                     b.Property<DateTime>("DATE_DE_PRODUCTION");
 
+                    b.Property<int>("ID_CONTRAT");
+
                     b.HasKey("ID_CLEINT");
+
+                    b.HasIndex("ID_CONTRAT");
 
                     b.ToTable("Facture");
                 });
 
             modelBuilder.Entity("app.domain.groupe.Groupe", b =>
                 {
+                    b.Property<string>("NOM_DU_GROUPE");
+
                     b.Property<string>("CACHET_SOUHAITER");
 
-                    b.HasKey("CACHET_SOUHAITER");
+                    b.HasKey("NOM_DU_GROUPE");
 
                     b.ToTable("Groupe");
                 });
@@ -106,7 +117,15 @@ namespace app.persistence.Migrations
                 {
                     b.Property<string>("ROLE");
 
+                    b.Property<int>("ID_ARTISTE");
+
+                    b.Property<string>("NOM_DU_GROUPE");
+
                     b.HasKey("ROLE");
+
+                    b.HasIndex("ID_ARTISTE");
+
+                    b.HasIndex("NOM_DU_GROUPE");
 
                     b.ToTable("Membre");
                 });
@@ -117,6 +136,31 @@ namespace app.persistence.Migrations
                         .WithMany()
                         .HasForeignKey("ID_CLEINT")
                         .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("app.domain.groupe.Groupe", "Groupe")
+                        .WithMany()
+                        .HasForeignKey("NOM_DU_GROUPE")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("app.domain.facture.Facture", b =>
+                {
+                    b.HasOne("app.domain.contrat.Contrat", "Contrat")
+                        .WithMany()
+                        .HasForeignKey("ID_CONTRAT")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("app.domain.membre.Membre", b =>
+                {
+                    b.HasOne("app.domain.artiste.Artiste", "Artiste")
+                        .WithMany()
+                        .HasForeignKey("ID_ARTISTE")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("app.domain.groupe.Groupe", "Groupe")
+                        .WithMany()
+                        .HasForeignKey("NOM_DU_GROUPE");
                 });
         }
     }

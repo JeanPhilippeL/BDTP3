@@ -1,4 +1,5 @@
 ﻿using app.domain.client;
+using app.domain.groupe;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,10 +11,12 @@ namespace app.domain.contrat
 {
     public class Contrat
     {
+        public int CACHET_OFFERT { get; set; }
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID_CONTRAT { get; set; }
-
+      
         [Required]
         public DateTime DATE_PRESTATION { get; set; }
 
@@ -23,11 +26,14 @@ namespace app.domain.contrat
         [Required]
         public string HEURE_FIN { get; set; }
 
-        public int CACHET_OFFERT { get; set; }
-
+        [Required]
         [ForeignKey("ID_CLEINT")]
-        public Client Client { get; set; }  //propriété de navigation
+        public Client Client { get; set; }
         public int ID_CLEINT { get; set; }
 
+        [Required]
+        [ForeignKey("NOM_DU_GROUPE")]
+        public Groupe Groupe { get; set; }
+        public string NOM_DU_GROUPE { get; set; }
     }
 }

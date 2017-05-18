@@ -18,7 +18,7 @@ namespace app.domain.facture
         public DateTime DATE_DE_PRODUCTION { get; set; }
 
         [ForeignKey("ID_CONTRAT")]
-        public Contrat Contrat { get; set; }  //propriété de navigation
+        public Contrat Contrat { get; set; }
         public int ID_CONTRAT { get; set; }
     }
 }
