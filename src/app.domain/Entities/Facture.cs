@@ -12,7 +12,7 @@ namespace app.domain.facture
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID_CLEINT { get; set; }
+        public int ID_CLIENT { get; set; }
 
         [Required]
         public DateTime DATE_DE_PRODUCTION { get; set; }

@@ -23,7 +23,7 @@ namespace app.persistence
 
             public T GetById(int id)
             {
-                return _context.Set<T>().FirstOrDefault(x => x.ID_CLEINT == id);
+                return _context.Set<T>().FirstOrDefault(x => x.ID_CLIENT == id);
             }
 
             public void Delete(T entity)
@@ -43,8 +43,8 @@ namespace app.persistence
                 _context.Set<T>().Update(entity);
                 _context.SaveChanges();
             }
-            public void Cascade(T entity) // mise-à-jour
-            {
+            public void Cascade(T entity) // opérations en cascade
+        {
                 //
             }
     }

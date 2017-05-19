@@ -7,7 +7,7 @@ namespace app.domain.groupe
     public class Groupe
     {
         
-        public string CACHET_SOUHAITER { get; set; }
+        public int CACHET_SOUHAITER { get; set; }
 
         [Key]
         public string NOM_DU_GROUPE { get; set; }

@@ -44,7 +44,7 @@ namespace app.persistence
                 _context.SaveChanges();
             }
 
-        public void Cascade(T entity) // mise-à-jour
+        public void Cascade(T entity) // opérations en cascade
         {
             //
         }

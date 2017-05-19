@@ -1,8 +1,6 @@
-﻿/*
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using app.domain.company;
 using app.persistence;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
@@ -12,37 +10,40 @@ using app.domain.client;
 
 namespace app.IntegrationTests
 {
-    public class CompanyRepositoryTests
+    public class ClientRepositoryTests
     {
         private ApplicationDbContextFactory _dbContextFactory;
         private readonly DbContextOptionsBuilder<ApplicationDbContext> _dbContextOptionsBuilder;
-        private readonly ClientFrameworkRepository<Company> _companyRepository;
+        private readonly ClientFrameworkRepository<Client> _clientRepository;
 
-        public CompanyRepositoryTests()
+        public ClientRepositoryTests()
         {
             _dbContextFactory = new ApplicationDbContextFactory();
 
             var dbContext = _dbContextFactory.Create();
             ClearAllTables(dbContext);
-            _companyRepository = new ClientFrameworkRepository<Client>(dbContext);
+            _clientRepository = new ClientFrameworkRepository<Client>(dbContext);
         }
 
         [Fact]
-        public void Add_Company_AddsItemToDatabase()
+        public void Add_Client_ToDatabase()
         {
             //Arrange
-            var item = new Company()
+            var item = new Client()
             {
-                Name = "Google inc."
+                ID_CLIENT = 1,
+                NOM_CLIENT = "Travis Clint",
+                REFERENCE = "",
+                TELEPHONE_CLIENT = "5817777777"
             };
 
             //Action
-            _companyRepository.Add(item);
+            _clientRepository.Add(item);
 
             // Assert
             using (var apiDbContext = _dbContextFactory.Create())
             {
-                apiDbContext.Companies.ToList().Count.Should().Be(1);
+                apiDbContext.Client.ToList().Count.Should().Be(1);
             }
         }
 
@@ -50,40 +51,46 @@ namespace app.IntegrationTests
         public void Remove_ExistingCompany_DeletesCompanyFromDatabase()
         {
             //Arrange
-            var companies = new List<Company>()
+            var companies = new List<Client>()
             {
-                new Company()
+                new Client()
                 {
-                    Name = "Travis CI"
+                    ID_CLIENT = 1,
+                    NOM_CLIENT = "Travis Clint",
+                    REFERENCE = "",
+                    TELEPHONE_CLIENT = "5817777777"
                 },
-                new Company()
+                new Client()
                 {
-                    Name = "GitHub"
+                    ID_CLIENT = 2,
+                    NOM_CLIENT = "Daniel Lorent",
+                    REFERENCE = "",
+                    TELEPHONE_CLIENT = "5817777777"
                 }
             };
 
             var itemsCountBefore = companies.Count;
             using (var apiDbContext = _dbContextFactory.Create())
             {
-                apiDbContext.Companies.AddRange(companies);
+                apiDbContext.Client.AddRange(companies);
                 apiDbContext.SaveChanges();
             }
 
             //Action
-            _companyRepository.Delete(companies.ElementAt(0));
+            _clientRepository.Delete(companies.ElementAt(0));
 
             // Assert
             using (var apiDbContext = _dbContextFactory.Create())
             {
-                apiDbContext.Companies.ToList().Count.Should().Be(itemsCountBefore - 1);
+                apiDbContext.Client.ToList().Count.Should().Be(itemsCountBefore - 1);
             }
         }
 
         private void ClearAllTables(ApplicationDbContext dbContext)
         {
-            dbContext.Companies.RemoveRange(dbContext.Companies);
+            dbContext.Client.RemoveRange(dbContext.Client.ToList());
             dbContext.SaveChanges();
         }
     }
 }
-*/
+

@@ -11,6 +11,7 @@ namespace app.domain.contrat
 {
     public class Contrat
     {
+        
         public int CACHET_OFFERT { get; set; }
 
         [Key]
@@ -27,9 +28,9 @@ namespace app.domain.contrat
         public string HEURE_FIN { get; set; }
 
         [Required]
-        [ForeignKey("ID_CLEINT")]
+        [ForeignKey("ID_CLIENT")]
         public Client Client { get; set; }
-        public int ID_CLEINT { get; set; }
+        public int ID_CLIENT { get; set; }
 
         [Required]
         [ForeignKey("NOM_DU_GROUPE")]

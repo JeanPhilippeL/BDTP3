@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace app.domain.artiste
 {
@@ -24,6 +20,7 @@ namespace app.domain.artiste
         
         public string NOM_DE_SCENE { get; set; }
 
+        [Unique]
         [Required]
         public long NAS { get; set; }
     }

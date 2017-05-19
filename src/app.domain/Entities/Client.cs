@@ -7,7 +7,7 @@ namespace app.domain.client
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int ID_CLEINT { get; set; }
+        public int ID_CLIENT { get; set; }
 
         [Required]
         public string NOM_CLIENT { get; set; }
